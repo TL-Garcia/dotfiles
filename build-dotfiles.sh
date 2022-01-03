@@ -10,8 +10,8 @@ manage_config() {
     exit 85 # Wrong arguments
   fi
 
-   dir_name="$1"
-   dir_path="$CONFIG_DIR/$dir_name" 
+  dir_name="$1"
+  dir_path="$CONFIG_DIR/$dir_name" 
 
   echo "Scanning for $dir_name..."
 
