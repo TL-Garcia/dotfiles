@@ -1,3 +1,0 @@
-tmux: tmux.conf
-nvim: init.nvim
-i3:   config
