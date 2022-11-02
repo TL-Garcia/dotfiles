@@ -6,7 +6,8 @@ return require('packer').startup(function(use)
   -- Plugins
   use 'jiangmiao/auto-pairs'
   use 'tpope/vim-surround'
-  use 'folke/tokyonight.nvim'
+  use { 'neoclide/coc.nvim', branch = 'release' }
+  use 'junegunn/fzf'
   --use 'vim-airline/vim-airline'
   --use 'vim-airline/vim-airline-themes'
   --use '~/.fzf'
