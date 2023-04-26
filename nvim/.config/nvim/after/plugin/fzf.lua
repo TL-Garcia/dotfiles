@@ -1,3 +1,1 @@
-local nnoremap = require("user.keymap").nnoremap
-
-nnoremap("<leader>f", "<cmd>FZF<CR>")
+vim.keymap.set("n", "<leader>f", vim.cmd.FZF)

@@ -1,1 +1,1 @@
-
+vim.cmd('colo catppuccin')
