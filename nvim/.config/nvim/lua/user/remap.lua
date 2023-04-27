@@ -3,6 +3,12 @@ vim.keymap.set("n", "<leader>E", vim.cmd.Ex) -- Open explorer
 vim.keymap.set("n", "<leader>b", vim.cmd.bn) -- Next buffer
 vim.keymap.set("n", "<leader>B", vim.cmd.bp) -- Previous buffer
 
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
 -- Enable/Disable search hightlight
 vim.keymap.set("n", "<leader>h", "<cmd>set invhls<CR>")
 
@@ -20,3 +26,5 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) -- All occurrences of word under cursor
+
+
