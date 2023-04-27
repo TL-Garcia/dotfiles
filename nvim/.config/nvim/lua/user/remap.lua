@@ -11,3 +11,12 @@ vim.keymap.set("n", "<leader>y", "<Esc>\"+y")
 vim.keymap.set("n", "<leader>Y", "<Esc>\"+Y")
 vim.keymap.set("n", "<leader>p", "<Esc>\"+p")
 vim.keymap.set("n", "<leader>P", "<Esc>\"+P")
+
+-- Keep cursor in the middle
+vim.keymap.set("n", "<C-d>", "<C-d>zz") -- Scrolling 
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv") -- Searching
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Replace
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) -- All occurrences of word under cursor
