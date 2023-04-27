@@ -15,4 +15,8 @@ end)
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 require('lspconfig').jdtls.setup{ cmd = { 'jdtls' } }
 
-lsp.setup()
+lsp.setup({
+  highlight = {
+    enable = (not vim.g.vscode),
+  }
+})
