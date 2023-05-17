@@ -204,5 +204,5 @@ bindsym $mod+i exec firefox
 
 #STARTUP 
 #-------
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id launchPolybar
 exec --no-startup-id nitrogen --restore
