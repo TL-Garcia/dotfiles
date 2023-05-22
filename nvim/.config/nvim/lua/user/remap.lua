@@ -2,7 +2,9 @@
 vim.keymap.set("n", "<leader>E", vim.cmd.Ex) -- Open explorer
 vim.keymap.set("n", "<leader><Tab>", vim.cmd.bn) -- Next buffer
 vim.keymap.set("n", "<leader><S-Tab>", vim.cmd.bp) -- Previous buffer
+vim.keymap.set("n", "<leader>w", vim.cmd.bd) -- Close buffer
 
+-- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
