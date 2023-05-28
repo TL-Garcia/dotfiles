@@ -200,5 +200,5 @@ bindsym $mod+i exec firefox
 
 #STARTUP 
 #-------
-exec_always launchPolybar
+exec_always "~/.config/polybar/launch-polybar"
 exec st
