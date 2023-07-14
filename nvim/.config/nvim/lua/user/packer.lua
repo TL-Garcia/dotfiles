@@ -21,6 +21,9 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- Git
+  use 'tpope/vim-fugitive'
+
   -- LSP  
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
