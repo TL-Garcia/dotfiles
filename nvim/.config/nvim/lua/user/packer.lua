@@ -25,6 +25,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
 
   -- LSP  
+  use 'alvan/vim-closetag'
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use {
