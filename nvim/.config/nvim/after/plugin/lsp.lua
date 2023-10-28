@@ -2,12 +2,6 @@ local lsp = require('lsp-zero')
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-  'denols',
-  'tsserver',
-  'jdtls'
-})
-
 -- Keybindings
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
