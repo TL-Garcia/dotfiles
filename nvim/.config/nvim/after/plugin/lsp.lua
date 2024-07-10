@@ -2,12 +2,6 @@ local lsp = require('lsp-zero')
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-  'denols',
-  'tsserver',
-  'jdtls'
-})
-
 -- Keybindings
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
@@ -18,6 +12,10 @@ lsp.on_attach(function(client, bufnr)
     vim.lsp.buf.format({async = false, timeout_ms = 10000})
   end, opts)
 end)
+
+-- Mason (lsp management)
+require("mason").setup()
+require("mason-lspconfig").setup()
 
 -- (Optional) Configure lua language server for neovim
 local lspConfig = require('lspconfig')
