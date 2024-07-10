@@ -1,5 +1,5 @@
 -- File Exploration
-vim.keymap.set("n", "<leader>E", vim.cmd.Ex) -- Open explorer
+vim.keymap.set("n", "<leader>e", vim.cmd.NERDTree) -- Open explorer
 vim.keymap.set("n", "<leader><Tab>", vim.cmd.bn) -- Next buffer
 vim.keymap.set("n", "<leader><S-Tab>", vim.cmd.bp) -- Previous buffer
 vim.keymap.set("n", "<leader>w", vim.cmd.bd) -- Close buffer

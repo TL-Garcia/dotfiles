@@ -11,6 +11,9 @@ require('lazy').setup{
 
   -- Navigation
   'junegunn/fzf';
+  'preservim/nerdtree';
+  'ryanoasis/vim-devicons';
+  'tiagofumo/vim-nerdtree-syntax-highlight';
   'nvim-tree/nvim-web-devicons';
 
   {
@@ -24,9 +27,11 @@ require('lazy').setup{
   -- LSP  
   'alvan/vim-closetag';
   'saadparwaiz1/cmp_luasnip'; -- Snippets source for nvim-cmp;
+  'williamboman/mason.nvim';
+  'williamboman/mason-lspconfig.nvim';
   'nvim-treesitter/nvim-treesitter';
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
   {'neovim/nvim-lspconfig'},
+  {'VonHeikemen/lsp-zero.nvim'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
   {'L3MON4D3/LuaSnip'},

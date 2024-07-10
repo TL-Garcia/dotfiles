@@ -22,6 +22,12 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
+-- Netrw
+vim.g.netrw_winsize=25
+vim.g.netrw_banner=0
+vim.g.autochdir = true
+vim.g.netrw_liststyle=3
+
 -- Misc
 vim.g.mapleader = " "
 vim.g.updatetime = 50

@@ -13,6 +13,10 @@ lsp.on_attach(function(client, bufnr)
   end, opts)
 end)
 
+-- Mason (lsp management)
+require("mason").setup()
+require("mason-lspconfig").setup()
+
 -- (Optional) Configure lua language server for neovim
 local lspConfig = require('lspconfig')
 lspConfig.lua_ls.setup(lsp.nvim_lua_ls())
