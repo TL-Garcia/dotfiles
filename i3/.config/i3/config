@@ -193,10 +193,6 @@ bindsym $mod+i exec firefox
 
 #STARTUP 
 #-------
-<<<<<<< Updated upstream
-exec_always --no-startup-id "~/.config/polybar/launch-polybar" 
-=======
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.config/polybar/launch-polybar
->>>>>>> Stashed changes
 exec --no-startup-id nitrogen --restore
