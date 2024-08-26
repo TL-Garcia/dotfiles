@@ -4,14 +4,22 @@ lsp.preset("recommended")
 
 -- Keybindings
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  lsp.default_keymaps({ buffer = bufnr })
 
-  local opts = {buffer = bufnr}
+  local opts = { buffer = bufnr }
 
-  vim.keymap.set({'n', 'x'}, 'gq', function ()
-    vim.lsp.buf.format({async = false, timeout_ms = 10000})
+  vim.keymap.set({ 'n', 'x' }, 'gq', function()
+    vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
   end, opts)
 end)
+
+local cmp = require('cmp')
+
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  }),
+})
 
 -- Mason (lsp management)
 require("mason").setup()
@@ -20,7 +28,7 @@ require("mason-lspconfig").setup()
 -- (Optional) Configure lua language server for neovim
 local lspConfig = require('lspconfig')
 lspConfig.lua_ls.setup(lsp.nvim_lua_ls())
-lspConfig.jdtls.setup{ cmd = { 'jdtls' } }
+lspConfig.jdtls.setup { cmd = { 'jdtls' } }
 
 -- Config deno/tsserver based on project file
 lspConfig.denols.setup {
