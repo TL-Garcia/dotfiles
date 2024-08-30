@@ -41,3 +41,8 @@ lspConfig.tsserver.setup {
 }
 
 lsp.setup()
+
+-- Recognize files under /pipelines as Groovy for Jenkinsfile
+vim.cmd [[
+  autocmd BufRead,BufNewFile */pipelines/* set filetype=groovy
+]]
