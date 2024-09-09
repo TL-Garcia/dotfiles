@@ -1,6 +1,17 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# History
+export HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=HISTSIZE
+
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt share_history
+setopt append_history
+setopt inc_append_history
+
 # Alias
 alias vim="nvim"
 alias vi="nvim"
@@ -19,16 +30,20 @@ source /usr/share/doc/fzf/examples/completion.zsh
 eval "$(starship init zsh)"
 
 # Plugins
-source ~/.zplug/init.zsh
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
+#source ~/.zplug/init.zsh
+#zplug "zsh-users/zsh-autosuggestions"
 
+
+## Completions
 autoload -Uz +X compinit && compinit
+setopt menu_complete   # do autoselect the first completion entry
 
-## case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|=*' 'l:|=* r:|=*' # Hypen & case insensitive
+zstyle ':completion:*:*:*:*:*' menu select
+
+zstyle ':completion:*' debug
+
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu select
 
 # Zoxide
 eval "$(zoxide init zsh)"
@@ -39,9 +54,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
 export PATH="$PATH:/home/tomas/.local/bin"
-
-# TODO: remove from here
-setxkbmap -layout us,es -option grp:win_space_toggle -option caps:super
 
 # bun completions
 [ -s "/home/tomas/.bun/_bun" ] && source "/home/tomas/.bun/_bun"
