@@ -1,0 +1,31 @@
+[user]
+  name = tl-garcia
+  email = tomas.bl.garcia@gmail.com
+
+[diff]
+  tool = nvimdiff
+  prompt = false
+
+[core]
+	editor = nvim
+
+[merge]
+	tool = nvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "nvimdiff"]
+  layout = "LOCAL,REMOTE / MERGED"
+
+[includeIf "gitdir:~/code/idealista/"]
+  path = .gitconfig-idealista
+[alias]
+	d = difftool
+[difftool]
+	prompt = false
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
