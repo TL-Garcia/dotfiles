@@ -189,7 +189,7 @@ bindsym $mod+u mode "$mode_system"
 bindsym $mod+p exec i3lock -c 2f697c
 
 #Internet
-bindsym $mod+i exec firefox
+bindsym $mod+i exec $(xdg-settings get default-web-browser | sed 's/\.desktop//')
 
 #STARTUP 
 #-------
