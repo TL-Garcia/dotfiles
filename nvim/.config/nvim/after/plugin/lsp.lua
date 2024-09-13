@@ -46,3 +46,13 @@ lsp.setup()
 vim.cmd [[
   autocmd BufRead,BufNewFile */pipelines/* set filetype=groovy
 ]]
+
+-- Recognize .sh files as bash
+lsp.configure('bashls', {
+  filetypes = { 'sh' },
+  settings = {
+    shellcheck = {
+      enable = true
+    }
+  }
+})
