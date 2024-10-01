@@ -7,8 +7,22 @@ vim.keymap.set("n", "<leader>w", vim.cmd.bd)             -- Close buffer
 
 -- Telescope
 local telescope = require('telescope.builtin')
+
+local function live_grep_with_filter()
+  vim.ui.input({ prompt = 'Enter glob pattern (e.g., *.jsx): ' }, function(input)
+    if input then
+      telescope.live_grep({
+        prompt_title = "Search " .. input .. "",
+        search_dirs = { "." },
+        glob_pattern = input,
+        default_text = ""
+      })
+    end
+  end)
+end
+
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
-vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})
+vim.keymap.set('n', '<leader>fg', live_grep_with_filter, {})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, {})
 vim.keymap.set('n', '<leader>km', telescope.keymaps)
