@@ -44,6 +44,23 @@ zstyle ':completion:*' debug
 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
+# Keymaps
+# [Shift-Tab] - move through the completion menu backwards
+bindkey '^[[Z' reverse-menu-complete
+# Move forward/backward by word
+bindkey '^[[1;5C' forward-word
+bindkey '^F' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^B' backward-word
+
+# Move to start/end of line
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+# Move though history
+bindkey '^N' down-line-or-history
+bindkey '^P' up-line-or-history
+
 # Zoxide
 eval "$(zoxide init zsh)"
 alias cd="z"
