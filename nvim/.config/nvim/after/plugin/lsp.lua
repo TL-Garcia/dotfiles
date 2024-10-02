@@ -22,7 +22,9 @@ cmp.setup({
 })
 
 -- Mason (lsp management)
-require("mason").setup()
+require("mason").setup({
+  path = "append"
+})
 require("mason-lspconfig").setup()
 
 -- (Optional) Configure lua language server for neovim
