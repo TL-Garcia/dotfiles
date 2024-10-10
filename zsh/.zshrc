@@ -69,7 +69,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
-export PATH="$PATH:/home/tomas/.local/bin"
+export PATH="$PATH:${HOME}/.local/bin"
 
 # bun completions
 [ -s "/home/tomas/.bun/_bun" ] && source "/home/tomas/.bun/_bun"
