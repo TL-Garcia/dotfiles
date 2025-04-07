@@ -17,6 +17,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias ls="ls --color"
 alias grep="grep --color"
+alias gch="git fetch && git checkout"
 alias vimrc="nvim ~/.config/nvim"
 alias zconf="nvim ~/.zshrc"
 alias vpn=" forticlient vpn connect idealista -u tlorono -p"
@@ -65,10 +66,6 @@ bindkey '^P' up-line-or-history
 eval "$(zoxide init zsh)"
 alias cd="z"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
-
 export PATH="$PATH:${HOME}/.local/bin"
 
 # bun completions
@@ -82,3 +79,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+source /usr/share/nvm/init-nvm.sh
