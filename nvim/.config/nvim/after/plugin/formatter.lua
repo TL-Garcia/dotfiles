@@ -10,6 +10,7 @@ conform.setup({
   },
   formatters_by_ft = {
     lua = { "stylua" },
+    css = js_formatters,
     javascript = js_formatters,
     javascriptreact = js_formatters,
     typescript = js_formatters,

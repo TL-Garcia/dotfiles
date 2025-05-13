@@ -34,17 +34,36 @@ require('lazy').setup {
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
-      'L3MON4D3/LuaSnip',         -- Snippet engine
-      'saadparwaiz1/cmp_luasnip', -- Snippet engine adapter
-      'hrsh7th/cmp-nvim-lsp',     -- Source for LSP completion
+      'hrsh7th/cmp-nvim-lsp', -- Source for LSP completion
     }
   },
   'mfussenegger/nvim-jdtls',
   'stevearc/conform.nvim',
   'windwp/nvim-ts-autotag',
-  'github/copilot.nvim',
+  {
+    "github/copilot.nvim",
+    event = "InsertEnter",
+    lazy = false,
+    autoStart = true,
+    build = ":Copilot auth",
+    url = "git@github.com:github/copilot.vim.git",
+    config = function()
+      vim.g.copilot_assume_mapped = true
+      vim.g.copilot_enabled = false
+      vim.keymap.set("n", "<leader>ai", function()
+        vim.g.copilot_enabled = not vim.g.copilot_enabled
+        if vim.g.copilot_enabled then
+          print("Copilot enabled")
+        else
+          print("Copilot disabled")
+        end
+      end, { desc = "Toggle Copilot" })
+      vim.api.nvim_set_keymap("i", "<C-L>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+      vim.g.copilot_no_tab_map = true
+    end,
+  },
 
   -- Debugging
   'mfussenegger/nvim-dap',
-  { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
 }
