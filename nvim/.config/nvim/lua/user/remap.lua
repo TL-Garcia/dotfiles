@@ -1,9 +1,9 @@
 -- File Exploration
-vim.keymap.set("n", "<leader>E", vim.cmd.NERDTreeFind)   -- Open explorer on current file
-vim.keymap.set("n", "<leader>e", vim.cmd.NERDTreeToggle) -- Open explorer
-vim.keymap.set("n", "<leader><Tab>", vim.cmd.bn)         -- Next buffer
-vim.keymap.set("n", "<leader><S-Tab>", vim.cmd.bp)       -- Previous buffer
-vim.keymap.set("n", "<leader>w", vim.cmd.bd)             -- Close buffer
+vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle, { desc = "Open explorer on root dir" })
+vim.keymap.set("n", "<leader>E", vim.cmd.NvimTreeFindFileToggle, { desc = "Open explorer on current file" })
+vim.keymap.set("n", "<leader><Tab>", vim.cmd.bn, { desc = "Next buffer" })
+vim.keymap.set("n", "<leader><S-Tab>", vim.cmd.bp, { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>w", vim.cmd.bd, { desc = "Close buffer" })
 
 -- Telescope
 local telescope = require('telescope.builtin')
@@ -52,3 +52,4 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- TODO: Make this language agnostic
 vim.keymap.set("n", "<leader>xn", "<cmd>!node %<CR>")     -- Node
 vim.keymap.set("n", "<leader>xd", "<cmd>!deno run %<CR>") -- Deno
+

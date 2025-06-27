@@ -11,9 +11,24 @@ require('lazy').setup {
 
   -- Navigation
   'junegunn/fzf',
-  'preservim/nerdtree',
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function ()
+      require("nvim-tree").setup({
+        view = {
+          width = 45
+        },
+        renderer = {
+          icons = {
+            show = {
+              git = false
+            }
+          }
+        }
+      })
+    end
+  },
   'ryanoasis/vim-devicons',
-  'tiagofumo/vim-nerdtree-syntax-highlight',
   'nvim-tree/nvim-web-devicons',
 
   {
@@ -40,6 +55,16 @@ require('lazy').setup {
   'mfussenegger/nvim-jdtls',
   'stevearc/conform.nvim',
   'windwp/nvim-ts-autotag',
+  {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-tree.lua",
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
   {
     "github/copilot.nvim",
     event = "InsertEnter",
