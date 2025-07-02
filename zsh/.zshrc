@@ -24,7 +24,7 @@ alias vpn=" forticlient vpn connect idealista -u tlorono -p"
 alias screencast="peek"
 
 # FZF
-source <(fzf --zsh)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Starship
 eval "$(starship init zsh)"
@@ -91,4 +91,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
 
