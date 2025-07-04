@@ -11,9 +11,11 @@
 
 [merge]
 	tool = nvimdiff
+
 [mergetool]
   prompt = false
   keepBackup = false
+
 [mergetool "nvimdiff"]
   layout = "LOCAL,REMOTE / MERGED"
 
@@ -27,5 +29,6 @@
 	rebase = false
 [init]
 	defaultBranch = main
+	templateDir = ~/.git-template
 [push]
 	autoSetupRemote = true

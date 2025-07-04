@@ -1,3 +1,6 @@
 [user]
 name = Tomas Loroño
 email = tlorono@idealista.com
+
+[init]
+templateDir = ~/.git-template
