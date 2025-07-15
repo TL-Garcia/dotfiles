@@ -24,7 +24,7 @@ alias vpn=" forticlient vpn connect idealista -u tlorono -p"
 alias screencast="peek"
 
 # FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # Starship
 eval "$(starship init zsh)"
