@@ -42,6 +42,7 @@ vim.keymap.set('n', '<leader>km', telescope.keymaps)
 
 -- Git
 vim.keymap.set('n', '<leader>g', vim.cmd.Git)
+vim.keymap.set('n', '<leader>gp', "<cmd>Git push<CR>")
 
 -- Enable/Disable search hightlight
 vim.keymap.set("n", "<leader>h", "<cmd>set invhls<CR>")
