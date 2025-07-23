@@ -10,19 +10,32 @@ local telescope = require('telescope.builtin')
 
 local function live_grep_with_filter()
   vim.ui.input({ prompt = 'Enter glob pattern (e.g., *.jsx): ' }, function(input)
-    if input then
-      telescope.live_grep({
-        prompt_title = "Search " .. input .. "",
-        search_dirs = { "." },
-        glob_pattern = input,
-        default_text = ""
-      })
+    local user_dismissed_prompt = input == nil
+
+    if user_dismissed_prompt then
+      return
     end
+
+    telescope.live_grep({
+      prompt_title = "Search " .. input,
+      search_dirs = { "." },
+      glob_pattern = input,
+      default_text = ""
+    })
   end)
+end
+
+local function live_grep_cdw()
+  local buffer_dir = vim.fn.expand "%:p:h"
+
+  telescope.live_grep({
+    cwd = buffer_dir
+  })
 end
 
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
 vim.keymap.set('n', '<leader>fg', live_grep_with_filter, {})
+vim.keymap.set('n', '<leader>fG', live_grep_cdw, { desc = "Find text matches in subdirectories of current buffer" })
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, {})
 vim.keymap.set('n', '<leader>km', telescope.keymaps)
@@ -52,4 +65,3 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- TODO: Make this language agnostic
 vim.keymap.set("n", "<leader>xn", "<cmd>!node %<CR>")     -- Node
 vim.keymap.set("n", "<leader>xd", "<cmd>!deno run %<CR>") -- Deno
-
