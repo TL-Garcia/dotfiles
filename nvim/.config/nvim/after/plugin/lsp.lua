@@ -70,7 +70,13 @@ cmp.setup({
 require("mason").setup({
   path = "append"
 })
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    'lua_ls',
+    'tailwindcss',
+    'ts_ls'
+  }
+})
 
 -- Configure lua language server for neovim
 local lspConfig = require('lspconfig')
