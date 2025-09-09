@@ -74,7 +74,8 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     'lua_ls',
     'tailwindcss',
-    'ts_ls'
+    'ts_ls',
+    'clangd'
   }
 })
 
@@ -127,6 +128,14 @@ vim.lsp.config('lua_ls', {
   settings = {
     Lua = {}
   }
+})
+
+-- Clang
+lspConfig.clangd.setup({
+  cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
+  init_options = {
+    fallbackFlags = { '-std=c++17' },
+  },
 })
 
 -- Config deno/tsserver based on project file
