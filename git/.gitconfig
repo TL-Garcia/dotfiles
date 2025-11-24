@@ -19,8 +19,6 @@
 [mergetool "nvimdiff"]
   layout = "LOCAL,REMOTE / MERGED"
 
-[includeIf "gitdir:~/code/idealista/"]
-  path = .gitconfig-idealista
 [alias]
 	d = difftool
 [difftool]
