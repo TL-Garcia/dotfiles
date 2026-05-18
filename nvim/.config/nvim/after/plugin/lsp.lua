@@ -9,12 +9,14 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lspconfig_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
+-- Set capabilities for all LSP servers
+vim.lsp.config('*', {
+  capabilities = vim.tbl_deep_extend(
+    'force',
+    vim.lsp.protocol.make_client_capabilities(),
+    require('cmp_nvim_lsp').default_capabilities()
+  ),
+})
 
 -- Keybindings
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -79,59 +81,26 @@ require("mason-lspconfig").setup({
   }
 })
 
--- Configure lua language server for neovim
-local lspConfig = require('lspconfig')
-vim.lsp.config('lua_ls', {
-  on_init = function(client)
-    if client.workspace_folders then
-      local path = client.workspace_folders[1].name
-      if
-          path ~= vim.fn.stdpath('config')
-          and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
-      then
-        return
-      end
-    end
-
-    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most
-        -- likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Tell the language server how to find Lua modules same way as Neovim
-        -- (see `:h lua-module-load`)
-        path = {
-          'lua/?.lua',
-          'lua/?/init.lua',
-        },
-      },
-      -- Make the server aware of Neovim runtime files
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME
-          -- Depending on the usage, you might want to add additional paths
-          -- here.
-          -- '${3rd}/luv/library'
-          -- '${3rd}/busted/library'
-        }
-        -- Or pull in all of 'runtimepath'.
-        -- NOTE: this is a lot slower and will cause issues when working on
-        -- your own configuration.
-        -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-        -- library = {
-        --   vim.api.nvim_get_runtime_file('', true),
-        -- }
-      }
-    })
-  end,
-  settings = {
-    Lua = {}
-  }
+-- Enable LSP servers
+vim.lsp.enable({
+  'lua_ls',
+  'tailwindcss',
+  'ts_ls',
+  'clangd',
+  'denols',
 })
 
+-- Configure lua language server for neovim
+vim.lsp.config['lua_ls'] = {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_markers = { '.luarc.json', '.git' },
+  settings = { Lua = { diagnostics = { globals = { "vim" } } } }
+}
+vim.lsp.enable('lua_ls')
+
 -- Clang
-lspConfig.clangd.setup({
+vim.lsp.config('clangd', {
   cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
   init_options = {
     fallbackFlags = { '-std=c++17' },
@@ -139,20 +108,14 @@ lspConfig.clangd.setup({
 })
 
 -- Config deno/tsserver based on project file
-lspConfig.denols.setup {
-  root_dir = lspConfig.util.root_pattern("deno.json")
-}
+vim.lsp.config('denols', {
+  root_dir = vim.fs.root(0, {"deno.json"}),
+})
 
-lspConfig.ts_ls.setup {
-  root_dir = lspConfig.util.root_pattern('package.json'),
-  single_file_support = false
-}
-
-
--- Recognize files under /pipelines as Groovy for Jenkinsfile
-vim.cmd [[
-  autocmd BufRead,BufNewFile */pipelines/* set filetype=groovy
-]]
+vim.lsp.config('ts_ls', {
+  root_dir = vim.fs.root(0, {'package.json'}),
+  single_file_support = false,
+})
 
 -- Autotag
 require('nvim-ts-autotag').setup({
@@ -164,3 +127,5 @@ require('nvim-ts-autotag').setup({
   },
 })
 
+
+require('nvim-treesitter').install { 'rust', 'javascript',  'typescript' }

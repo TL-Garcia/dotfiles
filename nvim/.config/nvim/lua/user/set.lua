@@ -29,3 +29,6 @@ vim.g.loaded_netrwPlugin = 1
 -- Misc
 vim.g.mapleader = " "
 vim.g.updatetime = 50
+
+-- Set borders for all floating windows
+vim.o.winborder = 'rounded'
