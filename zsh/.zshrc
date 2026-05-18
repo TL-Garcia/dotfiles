@@ -6,6 +6,8 @@ export HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=HISTSIZE
 
+setopt HIST_IGNORE_SPACE # Don't put commands prepended by <Space> into HISTFILE
+
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt share_history
