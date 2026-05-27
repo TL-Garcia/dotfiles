@@ -47,7 +47,8 @@ require('lazy').setup {
   {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
-    build = ':TSUpdate'
+    build = ':TSUpdate',
+    branch = 'main'
   },
   {
     'hrsh7th/nvim-cmp',
