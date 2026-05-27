@@ -23,7 +23,6 @@
         "temperature",
         "backlight",
         "battery",
-        "battery#bat2",
         "tray",
         "custom/power"
     ],
@@ -106,11 +105,13 @@
         "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     },
     "battery": {
+        "weighted-average": true,
         "states": {
             // "good": 95,
             "warning": 30,
             "critical": 15
         },
+        "full-at": 100,
         "format": "{capacity}% {icon}",
         "format-full": "{capacity}% {icon}",
         "format-charging": "{capacity}%  ",
@@ -119,9 +120,6 @@
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": [" ", " ", " ", " ", " "]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
     },
     "power-profiles-daemon": {
       "format": "{icon}",
