@@ -61,8 +61,3 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) -- All occurrences of word under cursor
-
--- Execute files
--- TODO: Make this language agnostic
-vim.keymap.set("n", "<leader>xn", "<cmd>!node %<CR>")     -- Node
-vim.keymap.set("n", "<leader>xd", "<cmd>!deno run %<CR>") -- Deno
