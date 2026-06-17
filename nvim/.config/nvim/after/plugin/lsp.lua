@@ -127,5 +127,8 @@ require('nvim-ts-autotag').setup({
   },
 })
 
-
-require('nvim-treesitter').install { 'rust', 'javascript',  'typescript' }
+-- Treesitter
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript' },
+  callback = function() vim.treesitter.start() end,
+})

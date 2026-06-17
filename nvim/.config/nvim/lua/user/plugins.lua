@@ -45,18 +45,17 @@ require('lazy').setup {
   'williamboman/mason-lspconfig.nvim',
   { 'neovim/nvim-lspconfig' },
   {
-    'nvim-treesitter/nvim-treesitter',
-    lazy = false,
-    build = ':TSUpdate',
-    branch = 'main'
-  },
-  {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp', -- Source for LSP completion
     }
   },
-  'mfussenegger/nvim-jdtls',
+  {
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = { 'neovim-treesitter/treesitter-parser-registry' },
+    lazy = false,
+    build = ':TSUpdate',
+  },
   'stevearc/conform.nvim',
   'windwp/nvim-ts-autotag',
   {
@@ -70,12 +69,10 @@ require('lazy').setup {
     end,
   },
   {
-      'MeanderingProgrammer/render-markdown.nvim',
-      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-      ---@module 'render-markdown'
-      ---@type render.md.UserConfig
-      opts = {},
+    'MeanderingProgrammer/render-markdown.nvim',
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
   },
   {
     "nickjvandyke/opencode.nvim",
@@ -88,7 +85,7 @@ require('lazy').setup {
         optional = true,
         opts = {
           input = {}, -- Enhances `ask()`
-          picker = { -- Enhances `select()`
+          picker = {  -- Enhances `select()`
             actions = {
               opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
             },
@@ -112,22 +109,28 @@ require('lazy').setup {
       vim.o.autoread = true -- Required for `opts.events.reload`
 
       -- Recommended/example keymaps
-      vim.keymap.set({ "n", "x" }, "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
-      vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end,                          { desc = "Execute opencode action…" })
-      vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end,                          { desc = "Toggle opencode" })
+      vim.keymap.set({ "n", "x" }, "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end,
+        { desc = "Ask opencode…" })
+      vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end,
+        { desc = "Execute opencode action…" })
+      vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
 
-      vim.keymap.set({ "n", "x" }, "go",  function() return require("opencode").operator("@this ") end,        { desc = "Add range to opencode", expr = true })
-      vim.keymap.set("n",          "goo", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Add line to opencode", expr = true })
+      vim.keymap.set({ "n", "x" }, "go", function() return require("opencode").operator("@this ") end,
+        { desc = "Add range to opencode", expr = true })
+      vim.keymap.set("n", "goo", function() return require("opencode").operator("@this ") .. "_" end,
+        { desc = "Add line to opencode", expr = true })
 
-      vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
-      vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
+      vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,
+        { desc = "Scroll opencode up" })
+      vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end,
+        { desc = "Scroll opencode down" })
 
       -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap)
       vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
       vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
     end,
   },
-  
+
 
   -- Debugging
   'mfussenegger/nvim-dap',
